@@ -169,6 +169,93 @@ GorillaTagMath.getDifficulty()
 GorillaTagMath.resetAll()
 ```
 
+## 🛠️ API Reference
+
+### MathEngine
+
+The core math problem generation module (no dependencies, pure functions):
+
+```javascript
+// Generate a new math problem
+MathEngine.generateProblem(operation, difficulty);
+// Returns: { id, operand1, operand2, operation, displayText, correctAnswer, difficulty }
+
+// Validate an answer
+MathEngine.checkAnswer(userAnswer, correctAnswer);
+// Returns: boolean
+
+// Get operations available at a difficulty level
+MathEngine.getAllowedOperations(difficulty);
+// Returns: ['+', '-', '*', '/']
+```
+
+### ScoreManager
+
+Score tracking and localStorage persistence:
+
+```javascript
+// Update score after answer submission
+ScoreManager.updateScore(correct, difficulty);
+// Returns: { current, streak, highScore, totalCorrect, totalAttempted, pointsEarned }
+
+// Get current score state
+ScoreManager.getScore();
+// Returns: { current, streak, highScore, totalCorrect, totalAttempted, accuracy }
+
+// Get lifetime player statistics
+ScoreManager.getLifetimeStats();
+// Returns: { gamesPlayed, problemsAttempted, correctAnswers, highScore, accuracy }
+
+// Reset game (preserves player data)
+ScoreManager.resetGame();
+
+// Clear all saved data
+ScoreManager.clearAllData();
+```
+
+### DifficultyManager
+
+Adaptive difficulty based on player performance:
+
+```javascript
+// Get current difficulty level (1-3)
+DifficultyManager.getCurrentDifficulty();
+
+// Record answer results (auto-adjusts difficulty)
+DifficultyManager.recordCorrect();
+DifficultyManager.recordIncorrect();
+// Returns: { levelChanged, newLevel, direction, difficultyName }
+
+// Get difficulty state
+DifficultyManager.getState();
+// Returns: { difficulty, difficultyName, correctStreak, incorrectStreak, progressToLevelUp }
+
+// Reset difficulty
+DifficultyManager.reset(startingDifficulty);
+```
+
+### GameController
+
+Main game orchestration and state management:
+
+```javascript
+// Initialize with dependencies
+GameController.init({ mathEngine, difficultyManager, scoreManager, uiController, themeEngine });
+
+// Game control methods
+GameController.startGame();
+GameController.submitAnswer(answer);
+GameController.pauseGame();
+GameController.resumeGame();
+GameController.endGame();
+
+// Get current game state
+GameController.getState();
+// Returns: { status, currentProblem, problemNumber, totalProblems }
+
+// Game states: MENU, PLAYING, FEEDBACK, PAUSED, GAMEOVER
+```
+
 ## 📖 Documentation
 
 Additional documentation is available in the `docs/` directory:

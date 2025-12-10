@@ -1,0 +1,12 @@
+[2025-12-09T18:38:40.522120] Build process started. Task: Gorilla Tag Math Game...
+[2025-12-09T18:38:40.522235] Configuration: flowise=False, incremental=False, parallel=None
+[2025-12-09T18:38:40.772338] Build process started. Task: Gorilla Tag Math Game...
+[2025-12-09T18:38:40.772468] Configuration: flowise=False, incremental=False, parallel=None
+[2025-12-09T18:39:44.188605] ✅ Scout report exists: scout-report.md
+[2025-12-09T18:39:44.189539] Injecting scout-report.md (markdown)
+[2025-12-09T18:40:44.527556] ✅ Scout report exists: scout-report.md
+[2025-12-09T18:40:44.529876] Injecting scout-report.md (markdown)
+[2025-12-09T18:41:41.805084] ✅ Architecture exists: architecture.md
+[2025-12-09T18:41:41.806228] Injecting architecture.md (markdown)
+[2025-12-09T18:41:56.350699] ✅ Architecture exists: architecture.md
+[2025-12-09T18:41:56.352204] Injecting architecture.md (markdown)

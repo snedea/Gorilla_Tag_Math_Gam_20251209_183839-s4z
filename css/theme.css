@@ -1,0 +1,503 @@
+/* theme.css - Gorilla Tag Jungle Theme Styling */
+
+/* Jungle Background */
+.jungle-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        #1a472a 0%,
+        #2d5a3d 30%,
+        #3d7a4d 60%,
+        #4a9a5d 100%
+    );
+    z-index: 0;
+}
+
+.jungle-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.3) 0%, transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(0, 100, 0, 0.2) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.game-bg {
+    background: linear-gradient(
+        180deg,
+        #1a472a 0%,
+        #2d5a3d 50%,
+        #234d31 100%
+    );
+}
+
+.celebration-bg {
+    background: linear-gradient(
+        180deg,
+        #2d5a3d 0%,
+        #4a9a5d 50%,
+        #6ab06a 100%
+    );
+}
+
+/* Vines Decoration */
+.vine {
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.vine-left {
+    left: 0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 40px,
+            #2d5a3d 40px,
+            #2d5a3d 80px
+        );
+}
+
+.vine-left::before {
+    content: '🌿';
+    position: absolute;
+    top: 20%;
+    left: -5px;
+    font-size: 2rem;
+    transform: rotate(-30deg);
+}
+
+.vine-left::after {
+    content: '🍃';
+    position: absolute;
+    top: 60%;
+    left: 5px;
+    font-size: 1.5rem;
+    transform: rotate(15deg);
+}
+
+.vine-right {
+    right: 0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 60px,
+            #2d5a3d 60px,
+            #2d5a3d 100px
+        );
+}
+
+.vine-right::before {
+    content: '🌿';
+    position: absolute;
+    top: 40%;
+    right: -5px;
+    font-size: 2rem;
+    transform: rotate(30deg) scaleX(-1);
+}
+
+.vine-right::after {
+    content: '🍃';
+    position: absolute;
+    top: 80%;
+    right: 5px;
+    font-size: 1.5rem;
+    transform: rotate(-15deg);
+}
+
+/* Gorilla Character - CSS Only */
+.gorilla-character {
+    position: relative;
+    width: 120px;
+    height: 140px;
+    margin-bottom: var(--space-4);
+}
+
+.gorilla-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Gorilla Head */
+.gorilla-head {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(145deg, #5a5a5a 0%, #3a3a3a 100%);
+    border-radius: 50% 50% 45% 45%;
+    box-shadow:
+        inset -5px -5px 10px rgba(0, 0, 0, 0.3),
+        inset 5px 5px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Gorilla Face */
+.gorilla-face {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 40px;
+    background: linear-gradient(145deg, #4a4a4a 0%, #2a2a2a 100%);
+    border-radius: 40% 40% 50% 50%;
+}
+
+/* Eyes */
+.eye {
+    position: absolute;
+    top: -10px;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.eye::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    width: 8px;
+    height: 8px;
+    background: #2d1f1f;
+    border-radius: 50%;
+}
+
+.eye::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+}
+
+.eye.left {
+    left: 5px;
+}
+
+.eye.right {
+    right: 5px;
+}
+
+/* Nose */
+.nose {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 12px;
+    background: #2a2a2a;
+    border-radius: 30% 30% 50% 50%;
+}
+
+.nose::before,
+.nose::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    width: 5px;
+    height: 5px;
+    background: #1a1a1a;
+    border-radius: 50%;
+}
+
+.nose::before {
+    left: 3px;
+}
+
+.nose::after {
+    right: 3px;
+}
+
+/* Mouth */
+.mouth {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 8px;
+    border: 2px solid #1a1a1a;
+    border-top: none;
+    border-radius: 0 0 50% 50%;
+}
+
+.mouth.smiling {
+    height: 12px;
+    width: 25px;
+}
+
+/* Gorilla Arms */
+.gorilla-arm {
+    position: absolute;
+    bottom: 10px;
+    width: 35px;
+    height: 70px;
+    background: linear-gradient(145deg, #4a4a4a 0%, #3a3a3a 100%);
+    border-radius: 40% 40% 50% 50%;
+}
+
+.gorilla-arm.left {
+    left: -10px;
+    transform: rotate(15deg);
+    transform-origin: top center;
+}
+
+.gorilla-arm.right {
+    right: -10px;
+    transform: rotate(-15deg);
+    transform-origin: top center;
+}
+
+.gorilla-arm.raised {
+    transform: rotate(45deg);
+}
+
+.gorilla-arm.right.raised {
+    transform: rotate(-45deg);
+}
+
+/* Gorilla Hand */
+.gorilla-arm::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 20px;
+    background: #3a3a3a;
+    border-radius: 50%;
+}
+
+/* Speech Bubble */
+.speech-bubble {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid white;
+}
+
+/* Game Gorilla Positioning */
+.game-gorilla {
+    margin-bottom: var(--space-8);
+}
+
+/* Celebration Gorilla */
+.celebration-gorilla .gorilla-body.celebrating {
+    animation: celebrate-bounce 0.5s ease infinite;
+}
+
+/* Confetti Container */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confetti-fall 3s ease-out forwards;
+}
+
+/* Jungle Floor */
+.jungle-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(
+        0deg,
+        #3d2817 0%,
+        #5d4027 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+/* Tree Silhouettes */
+.jungle-bg .tree {
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    height: 150px;
+    background: #1a3d1a;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    opacity: 0.3;
+}
+
+/* Button Enhancements for Theme */
+.btn-primary {
+    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #8B4513 0%, #5D2F0C 100%);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Problem Card Jungle Style */
+.problem-card {
+    background: linear-gradient(145deg, #FFF8E1 0%, #FFECB3 100%);
+    border: 4px solid #8B4513;
+    box-shadow:
+        0 4px 0 #5D2F0C,
+        0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Score Panel Jungle Style */
+.stat {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 248, 225, 0.95) 100%);
+    border: 2px solid #8B4513;
+}
+
+/* Answer Input Jungle Style */
+.answer-input {
+    background: linear-gradient(145deg, #FFF8E1 0%, #FFECB3 100%);
+    border: 4px solid #8B4513;
+}
+
+.answer-input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.4);
+}
+
+/* Modal Jungle Style */
+.modal-content {
+    background: linear-gradient(145deg, #FFF8E1 0%, #FFECB3 100%);
+    border: 4px solid #8B4513;
+}
+
+/* Feedback Jungle Style */
+.feedback-content {
+    background: linear-gradient(145deg, #FFF8E1 0%, #FFECB3 100%);
+    border: 4px solid #8B4513;
+}
+
+/* Difficulty Level Indicators */
+.difficulty-easy {
+    color: #4CAF50;
+}
+
+.difficulty-medium {
+    color: #FF9800;
+}
+
+.difficulty-hard {
+    color: #F44336;
+}
+
+/* Streak Fire Colors */
+.streak-fire {
+    filter: drop-shadow(0 0 4px #FF6B00);
+}
+
+/* Level Up Badge */
+.level-up-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #5D2F0C;
+    padding: var(--space-4) var(--space-8);
+    border-radius: var(--radius-xl);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    box-shadow: var(--shadow-xl);
+    animation: level-up-pop 0.5s ease;
+    z-index: 1000;
+}
+
+/* Banana Bonus Styling */
+.banana-bonus {
+    position: absolute;
+    font-size: 2rem;
+    animation: banana-float 1s ease forwards;
+    pointer-events: none;
+}
+
+/* Jungle Particles */
+.leaf-particle {
+    position: absolute;
+    font-size: 1.5rem;
+    pointer-events: none;
+    opacity: 0.7;
+    animation: leaf-fall 4s ease-in-out infinite;
+}
+
+/* Dark mode hint for older browsers */
+@media (prefers-color-scheme: dark) {
+    .jungle-bg {
+        background: linear-gradient(
+            180deg,
+            #0d2416 0%,
+            #1a3d2a 30%,
+            #2d5a3d 60%,
+            #3a7a4d 100%
+        );
+    }
+}
+
+/* High contrast adjustments */
+@media (prefers-contrast: high) {
+    .gorilla-head,
+    .gorilla-arm {
+        border: 2px solid black;
+    }
+
+    .problem-card {
+        border-width: 6px;
+    }
+}

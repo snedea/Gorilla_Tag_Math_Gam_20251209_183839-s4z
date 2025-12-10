@@ -1,0 +1,594 @@
+/* animations.css - Celebration and Feedback Animations */
+
+/* Base Animation Settings */
+:root {
+    --anim-duration-fast: 200ms;
+    --anim-duration-normal: 400ms;
+    --anim-duration-slow: 600ms;
+    --anim-timing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --anim-timing-ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ===== GORILLA ANIMATIONS ===== */
+
+/* Idle Breathing Animation */
+@keyframes gorilla-breathe {
+    0%, 100% {
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.02);
+    }
+}
+
+.gorilla-character:not(.celebrating) .gorilla-body {
+    animation: gorilla-breathe 3s ease-in-out infinite;
+}
+
+/* Celebration Bounce */
+@keyframes celebrate-bounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    25% {
+        transform: translateY(-15px) scale(1.05);
+    }
+    50% {
+        transform: translateY(-5px) scale(1.02);
+    }
+    75% {
+        transform: translateY(-10px) scale(1.03);
+    }
+}
+
+/* Gorilla Jump */
+@keyframes gorilla-jump {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    30% {
+        transform: translateY(-30px) scale(1.1);
+    }
+    50% {
+        transform: translateY(-35px) scale(1.1);
+    }
+    70% {
+        transform: translateY(-20px) scale(1.05);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.gorilla-jump {
+    animation: gorilla-jump 0.6s var(--anim-timing-bounce);
+}
+
+/* Gorilla Shake (Wrong Answer) */
+@keyframes gorilla-shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+.gorilla-shake {
+    animation: gorilla-shake 0.5s ease;
+}
+
+/* Gorilla Arm Wave */
+@keyframes arm-wave {
+    0%, 100% {
+        transform: rotate(15deg);
+    }
+    50% {
+        transform: rotate(-10deg);
+    }
+}
+
+.gorilla-wave .gorilla-arm.right {
+    animation: arm-wave 0.4s ease-in-out 3;
+    transform-origin: top center;
+}
+
+/* ===== FEEDBACK ANIMATIONS ===== */
+
+/* Correct Answer Pulse */
+@keyframes correct-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(76, 175, 80, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    }
+}
+
+.feedback-correct {
+    animation: correct-pulse 0.5s ease;
+}
+
+/* Incorrect Shake */
+@keyframes incorrect-shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-10px);
+    }
+    40% {
+        transform: translateX(10px);
+    }
+    60% {
+        transform: translateX(-10px);
+    }
+    80% {
+        transform: translateX(10px);
+    }
+}
+
+.feedback-incorrect {
+    animation: incorrect-shake 0.4s ease;
+}
+
+/* Pop In Animation */
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.pop-in {
+    animation: pop-in 0.3s var(--anim-timing-bounce);
+}
+
+/* Pop Out Animation */
+@keyframes pop-out {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+.pop-out {
+    animation: pop-out 0.2s var(--anim-timing-ease-out) forwards;
+}
+
+/* ===== SCREEN TRANSITIONS ===== */
+
+/* Slide In from Right */
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in-right {
+    animation: slide-in-right 0.4s var(--anim-timing-ease-out);
+}
+
+/* Slide Out to Left */
+@keyframes slide-out-left {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+.slide-out-left {
+    animation: slide-out-left 0.4s var(--anim-timing-ease-out) forwards;
+}
+
+/* Fade In Up */
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fade-in-up 0.4s var(--anim-timing-ease-out);
+}
+
+/* Fade Out Down */
+@keyframes fade-out-down {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.fade-out-down {
+    animation: fade-out-down 0.3s var(--anim-timing-ease-out) forwards;
+}
+
+/* ===== CELEBRATION EFFECTS ===== */
+
+/* Confetti Fall */
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.confetti {
+    animation: confetti-fall 3s ease-out forwards;
+}
+
+/* Star Burst */
+@keyframes star-burst {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+.star-burst {
+    animation: star-burst 0.6s ease-out forwards;
+}
+
+/* Sparkle */
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.sparkle {
+    animation: sparkle 0.8s ease-in-out infinite;
+}
+
+/* Pulse Glow */
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
+    }
+}
+
+.pulse-glow {
+    animation: pulse-glow 1s ease-in-out infinite;
+}
+
+/* ===== SCORE ANIMATIONS ===== */
+
+/* Score Pop */
+@keyframes score-pop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+        color: var(--color-accent);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.score-pop {
+    animation: score-pop 0.3s var(--anim-timing-bounce);
+}
+
+/* Points Float Up */
+@keyframes points-float {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+.points-float {
+    position: absolute;
+    animation: points-float 1s var(--anim-timing-ease-out) forwards;
+    font-family: var(--font-family-display);
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    text-shadow: 2px 2px 0 var(--color-secondary-dark);
+    pointer-events: none;
+}
+
+/* Streak Fire Pulse */
+@keyframes fire-pulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 4px #FF6B00);
+    }
+    50% {
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 8px #FF6B00) drop-shadow(0 0 12px #FF4500);
+    }
+}
+
+.streak-fire:not(.hidden) {
+    animation: fire-pulse 0.5s ease infinite;
+}
+
+/* ===== LEVEL UP ANIMATION ===== */
+
+@keyframes level-up-pop {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes level-up-glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 165, 0, 0.6);
+    }
+}
+
+.level-up-badge {
+    animation: level-up-pop 0.5s var(--anim-timing-bounce), level-up-glow 1s ease-in-out infinite;
+}
+
+/* ===== VINE ANIMATIONS ===== */
+
+@keyframes vine-sway {
+    0%, 100% {
+        transform: rotate(-2deg);
+    }
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+.vine-left {
+    animation: vine-sway 4s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+.vine-right {
+    animation: vine-sway 4.5s ease-in-out infinite reverse;
+    transform-origin: top center;
+}
+
+/* ===== LEAF FALL ANIMATION ===== */
+
+@keyframes leaf-fall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ===== BANANA BONUS ANIMATION ===== */
+
+@keyframes banana-float {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-60px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* ===== PROBLEM CARD ANIMATIONS ===== */
+
+@keyframes card-flip-in {
+    0% {
+        transform: perspective(400px) rotateY(90deg);
+        opacity: 0;
+    }
+    100% {
+        transform: perspective(400px) rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+.card-flip-in {
+    animation: card-flip-in 0.4s var(--anim-timing-ease-out);
+}
+
+@keyframes card-shake {
+    0%, 100% {
+        transform: translateX(0) rotate(0deg);
+    }
+    10% {
+        transform: translateX(-5px) rotate(-1deg);
+    }
+    20% {
+        transform: translateX(5px) rotate(1deg);
+    }
+    30% {
+        transform: translateX(-5px) rotate(-1deg);
+    }
+    40% {
+        transform: translateX(5px) rotate(1deg);
+    }
+    50% {
+        transform: translateX(-3px) rotate(0deg);
+    }
+    60% {
+        transform: translateX(3px) rotate(0deg);
+    }
+    70% {
+        transform: translateX(-2px) rotate(0deg);
+    }
+    80% {
+        transform: translateX(2px) rotate(0deg);
+    }
+    90% {
+        transform: translateX(-1px) rotate(0deg);
+    }
+}
+
+.card-shake {
+    animation: card-shake 0.5s ease;
+}
+
+/* ===== BUTTON ANIMATIONS ===== */
+
+@keyframes button-press {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(4px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.button-press {
+    animation: button-press 0.15s ease;
+}
+
+/* ===== LOADING ANIMATION ===== */
+
+@keyframes loading-dots {
+    0%, 20% {
+        content: '.';
+    }
+    40% {
+        content: '..';
+    }
+    60%, 100% {
+        content: '...';
+    }
+}
+
+.loading::after {
+    content: '.';
+    animation: loading-dots 1.5s infinite;
+}
+
+/* ===== ACCESSIBILITY: REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .confetti,
+    .sparkle,
+    .pulse-glow,
+    .streak-fire,
+    .vine-left,
+    .vine-right {
+        animation: none !important;
+    }
+}
+
+/* ===== ANIMATION UTILITIES ===== */
+
+.animate-once {
+    animation-iteration-count: 1;
+}
+
+.animate-infinite {
+    animation-iteration-count: infinite;
+}
+
+.animate-delay-100 {
+    animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+    animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+    animation-delay: 300ms;
+}
+
+.animate-delay-500 {
+    animation-delay: 500ms;
+}
+
+.no-animation {
+    animation: none !important;
+}

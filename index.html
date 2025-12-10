@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gorilla Tag Math Game - A fun educational math game with jungle themes">
+    <title>Gorilla Tag Math Game</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div id="app" class="game-container">
+        <!-- Menu Screen -->
+        <div id="menu-screen" class="screen active">
+            <div class="jungle-bg"></div>
+            <div class="content-wrapper">
+                <div class="gorilla-character" id="menu-gorilla">
+                    <div class="gorilla-body">
+                        <div class="gorilla-head">
+                            <div class="gorilla-face">
+                                <div class="eye left"></div>
+                                <div class="eye right"></div>
+                                <div class="nose"></div>
+                                <div class="mouth"></div>
+                            </div>
+                        </div>
+                        <div class="gorilla-arm left"></div>
+                        <div class="gorilla-arm right"></div>
+                    </div>
+                </div>
+                <h1 class="game-title">
+                    <span class="title-word">Gorilla</span>
+                    <span class="title-word">Math</span>
+                    <span class="title-word">Tag!</span>
+                </h1>
+                <p class="tagline">Swing through math problems!</p>
+
+                <div class="menu-buttons">
+                    <button id="start-btn" class="btn btn-primary" aria-label="Start Game">
+                        <span class="btn-icon">🎮</span>
+                        Start Game
+                    </button>
+                    <button id="settings-btn" class="btn btn-secondary" aria-label="Settings">
+                        <span class="btn-icon">⚙️</span>
+                        Settings
+                    </button>
+                </div>
+
+                <div class="high-score-display">
+                    <span class="label">High Score:</span>
+                    <span id="menu-high-score" class="value">0</span>
+                </div>
+            </div>
+
+            <div class="vine vine-left"></div>
+            <div class="vine vine-right"></div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal hidden" role="dialog" aria-labelledby="settings-title">
+            <div class="modal-content">
+                <h2 id="settings-title">Settings</h2>
+                <div class="setting-item">
+                    <label for="sound-toggle">Sound Effects</label>
+                    <button id="sound-toggle" class="toggle-btn" aria-pressed="true">
+                        <span class="toggle-on">ON</span>
+                        <span class="toggle-off">OFF</span>
+                    </button>
+                </div>
+                <div class="setting-item">
+                    <label for="difficulty-select">Starting Difficulty</label>
+                    <select id="difficulty-select">
+                        <option value="1">Easy (Single digits)</option>
+                        <option value="2">Medium (Double digits)</option>
+                        <option value="3">Hard (All operations)</option>
+                    </select>
+                </div>
+                <button id="close-settings" class="btn btn-primary">Done</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <div class="jungle-bg game-bg"></div>
+
+            <header class="game-header">
+                <div class="score-panel">
+                    <div class="stat">
+                        <span class="stat-label">Score</span>
+                        <span id="current-score" class="stat-value">0</span>
+                    </div>
+                    <div class="stat streak-stat">
+                        <span class="stat-label">Streak</span>
+                        <span id="current-streak" class="stat-value">0</span>
+                        <span class="streak-fire hidden">🔥</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Level</span>
+                        <span id="difficulty-level" class="stat-value">1</span>
+                    </div>
+                </div>
+                <button id="pause-btn" class="btn btn-icon-only" aria-label="Pause Game">⏸️</button>
+            </header>
+
+            <main class="game-main">
+                <div class="gorilla-character game-gorilla" id="game-gorilla">
+                    <div class="gorilla-body">
+                        <div class="gorilla-head">
+                            <div class="gorilla-face">
+                                <div class="eye left"></div>
+                                <div class="eye right"></div>
+                                <div class="nose"></div>
+                                <div class="mouth"></div>
+                            </div>
+                        </div>
+                        <div class="gorilla-arm left"></div>
+                        <div class="gorilla-arm right"></div>
+                    </div>
+                    <div class="speech-bubble hidden" id="gorilla-speech">
+                        <span class="speech-text"></span>
+                    </div>
+                </div>
+
+                <div class="problem-card" id="problem-card">
+                    <div class="problem-text" id="problem-text">5 + 3 = ?</div>
+                </div>
+
+                <div class="answer-section">
+                    <input
+                        type="number"
+                        id="answer-input"
+                        class="answer-input"
+                        placeholder="?"
+                        aria-label="Enter your answer"
+                        autocomplete="off"
+                        inputmode="numeric"
+                    >
+                    <button id="submit-btn" class="btn btn-primary btn-submit" aria-label="Submit Answer">
+                        Check!
+                    </button>
+                </div>
+
+                <div class="feedback-overlay hidden" id="feedback-overlay">
+                    <div class="feedback-content">
+                        <span class="feedback-icon"></span>
+                        <span class="feedback-text"></span>
+                    </div>
+                </div>
+            </main>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Pause Modal -->
+        <div id="pause-modal" class="modal hidden" role="dialog" aria-labelledby="pause-title">
+            <div class="modal-content">
+                <h2 id="pause-title">Game Paused</h2>
+                <div class="pause-stats">
+                    <p>Score: <span id="pause-score">0</span></p>
+                    <p>Problems Solved: <span id="pause-problems">0</span></p>
+                </div>
+                <div class="pause-buttons">
+                    <button id="resume-btn" class="btn btn-primary">Resume</button>
+                    <button id="quit-btn" class="btn btn-secondary">Quit Game</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameover-screen" class="screen hidden">
+            <div class="jungle-bg celebration-bg"></div>
+            <div class="content-wrapper">
+                <div class="gorilla-character celebration-gorilla" id="celebration-gorilla">
+                    <div class="gorilla-body celebrating">
+                        <div class="gorilla-head">
+                            <div class="gorilla-face happy">
+                                <div class="eye left"></div>
+                                <div class="eye right"></div>
+                                <div class="nose"></div>
+                                <div class="mouth smiling"></div>
+                            </div>
+                        </div>
+                        <div class="gorilla-arm left raised"></div>
+                        <div class="gorilla-arm right raised"></div>
+                    </div>
+                </div>
+
+                <h2 class="gameover-title">Great Job!</h2>
+
+                <div class="final-stats">
+                    <div class="final-stat">
+                        <span class="final-stat-label">Final Score</span>
+                        <span id="final-score" class="final-stat-value">0</span>
+                    </div>
+                    <div class="final-stat">
+                        <span class="final-stat-label">Problems Solved</span>
+                        <span id="final-problems" class="final-stat-value">0/0</span>
+                    </div>
+                    <div class="final-stat">
+                        <span class="final-stat-label">Best Streak</span>
+                        <span id="final-streak" class="final-stat-value">0</span>
+                    </div>
+                    <div class="final-stat new-high-score hidden" id="new-high-score-badge">
+                        <span class="final-stat-value">🏆 New High Score!</span>
+                    </div>
+                </div>
+
+                <div class="gameover-buttons">
+                    <button id="play-again-btn" class="btn btn-primary">
+                        <span class="btn-icon">🔄</span>
+                        Play Again
+                    </button>
+                    <button id="menu-btn" class="btn btn-secondary">
+                        <span class="btn-icon">🏠</span>
+                        Main Menu
+                    </button>
+                </div>
+            </div>
+
+            <div class="confetti-container" id="confetti-container"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/math-engine.js"></script>
+    <script src="js/difficulty-manager.js"></script>
+    <script src="js/score-manager.js"></script>
+    <script src="js/theme-engine.js"></script>
+    <script src="js/ui-controller.js"></script>
+    <script src="js/game-controller.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

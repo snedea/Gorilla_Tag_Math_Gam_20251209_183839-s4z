@@ -1,0 +1,39 @@
+{
+  "id": "b144b675-30ad-48b0-acf3-e5eba749b54c",
+  "job_id": "e61be4d5-7e31-4d69-bfc2-1725af59868f",
+  "phase": "Scout",
+  "state": "complete",
+  "execution_mode": "autonomous",
+  "system_prompt": "SCOUT PHASE\n\nYou're the Scout - first eyes on the project. Be direct, thorough, but not verbose.\n\n## \ud83e\udde0 Conversation Memory\n\n\ud83d\udcc5 RECENT CONVERSATIONS:\n  [today] hi... \u2192 Triggered a new build\n    \u2192 Triggered a new build\n  [today] User asked about: hi\n  [today] hi... \u2192 Completed request\n    \u2192 Completed request\n  [today] User asked about: hi\n  [today] User asked about: hi\n\n\ud83d\udd17 RELATED PAST CONVERSATIONS:\n  [0d ago] go ahead and start the build... \u2192 Completed request\n  [0d ago] User asked about: go ahead and start the build\n  [1d ago] hi... \u2192 Triggered a new build\n  [1d ago] User asked about: hi\n  [1d ago] hi... \u2192 Completed request\n\n---\n\n## CRITICAL: Working Directory Rules\n\n**Your working directory is: `/Users/name/homelab/Gorilla_Tag_Math_Gam_20251209_183839-s4z`**\n\n\u26a0\ufe0f **MANDATORY RULES** - Violation causes build failure:\n1. **ALL files you create** must be inside `/Users/name/homelab/Gorilla_Tag_Math_Gam_20251209_183839-s4z`\n2. **NEVER create files** in directories mentioned in the task description (those are SOURCE locations to READ from, not write to)\n3. The `.context-foundry/` folder is at `/Users/name/homelab/Gorilla_Tag_Math_Gam_20251209_183839-s4z/.context-foundry/`\n4. If the task says \"read from /path/to/data\", you READ from there but WRITE to your working directory\n\n**Example**: Task says \"build app using data from /Users/name/extensions/\"\n- \u2705 CORRECT: Write to `/Users/name/homelab/Gorilla_Tag_Math_Gam_20251209_183839-s4z/src/app.js`\n- \u2705 CORRECT: Read from `/Users/name/extensions/data.txt`\n- \u274c WRONG: Write to `/Users/name/extensions/src/app.js`\n\n---\n\n## Your Job\n\n1. **Explore** - Use `list_dir`, `view_file_outline`, `view_file` to understand what exists\n2. **Analyze** - What's the tech stack? What patterns are used? What's the current state?\n3. **Research** - What does the task require? Any patterns from the codex?\n4. **Report** - Create `.context-foundry/scout-report.md`\n\n## Report Format\n\nWrite `.context-foundry/scout-report.md`:\n\n```markdown\n# Scout Report: {Project Name}\n\n## What We're Building\n{1-2 paragraphs - the essence of the task}\n\n## Requirements\n- {Requirement 1}\n- {Requirement 2}\n- {Requirement 3}\n\n## Stack\n- **Backend**: {choice}\n- **Frontend**: {choice}\n- **Database**: {choice}\n- **Testing**: {approach}\n\n## Architecture\n1. {Key decision}\n2. {Key decision}\n3. {Key decision}\n\n## Risks\n- {Risk}: {Mitigation}\n\n## Codex Queries (if Flowise)\n- Searched: \"{query}\"\n- Found: {pattern}\n```\n\n## Style Notes\n\n- Be concise. No fluff.\n- State facts, not opinions dressed as advice.\n- If you notice patterns from past conversations (see memory above), mention them briefly.\n- Skip sections that don't apply.\n- When done, verify the file exists, then exit.\n",
+  "input_instruction": "Analyze the project requirements and create a scout report. Output: .context-foundry/scout-report.md\n\nGorilla Tag Math Game\n\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nCONTEXT CRYSTALLIZATION PROTOCOL\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\n**Objective**: Create a \"Restore Point\" artifact that allows a fresh agent to resume work immediately with zero context loss.\n**Output File**: `.context-foundry/memory/handoff_{YYYYMMDD}_{HHMMSS}.md`\n\n**INSTRUCTIONS:**\n\n1.  **Synthesize State**: specific focus on *unfinished* business.\n2.  **Compact Context**: Do not dump logs. Extract *decisions* and *conclusions*.\n3.  **Direct the Successor**: Write a specific command for the next agent.\n\n**OUTPUT TEMPLATE:**\n\n```markdown\n# \ud83e\udde0 Context Restore Point\n\n## \ud83d\udccd Where We Are\n- **Current Task**: {Name of the active task}\n- **Goal**: {The specific outcome we are chasing right now}\n\n## \ud83d\udea7 Execution State\n- **Active Files**:\n  - `{path/to/file1}` (Being edited)\n  - `{path/to/file2}` (Reference)\n- **Recent Changes**: {Bulleted list of what just happened}\n- **Errors/Blockers**: {Any active error messages or confusion points}\n\n## \ud83e\udde0 Mental Scrapbook\n- {Key architectural decision made}\n- {Variable name or pattern to remember}\n- {User preference noted}\n\n## \u23ed\ufe0f DIRECTIVE FOR NEXT AGENT\n**Your First Step**: {Explicit command, e.g., \"Run the unit tests for module X and fix the TypeError.\"}\n```\n",
+  "system_prompt_edited": null,
+  "input_instruction_edited": null,
+  "was_edited_before_submission": false,
+  "system_prompt_was_edited": false,
+  "input_instruction_was_edited": false,
+  "prompt_origins": {
+    "system_prompt": "deterministic",
+    "input_instruction": "ai_generated"
+  },
+  "created_at": "2025-12-09T18:38:51.754241",
+  "draft_at": null,
+  "review_started_at": null,
+  "edited_at": null,
+  "acknowledged_at": "2025-12-09T18:38:52.059371",
+  "processing_started_at": "2025-12-09T18:38:52.059369",
+  "completed_at": "2025-12-09T18:40:44.520916",
+  "reviewed_by": null,
+  "edited_by": null,
+  "acknowledged_by": "autonomous",
+  "token_metrics": {
+    "estimated_input_tokens": 1029,
+    "estimated_output_budget": 14000,
+    "actual_input_tokens": 849,
+    "actual_output_tokens": 0,
+    "context_percent": 0.5145000000000001,
+    "max_context_window": 200000
+  },
+  "error": null,
+  "rerun_count": 1,
+  "last_rerun_at": "2025-12-09T18:38:52.059367"
+}

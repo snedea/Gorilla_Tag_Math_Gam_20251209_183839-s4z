@@ -1,0 +1,23 @@
+{
+  "name": "gorilla-tag-math-game",
+  "version": "1.0.0",
+  "description": "Educational math game with Gorilla Tag theming",
+  "main": "index.html",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "math",
+    "game",
+    "education",
+    "gorilla-tag"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "puppeteer": "^24.32.1"
+  }
+}

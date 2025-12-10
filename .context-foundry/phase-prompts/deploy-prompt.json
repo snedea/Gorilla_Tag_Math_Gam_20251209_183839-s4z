@@ -19,8 +19,8 @@
   "draft_at": null,
   "review_started_at": null,
   "edited_at": null,
-  "acknowledged_at": "2025-12-09T19:07:28.818108",
-  "processing_started_at": "2025-12-09T19:07:28.818108",
+  "acknowledged_at": "2025-12-09T19:08:05.822403",
+  "processing_started_at": "2025-12-09T19:08:05.822401",
   "completed_at": null,
   "reviewed_by": null,
   "edited_by": null,
@@ -34,6 +34,6 @@
     "max_context_window": 200000
   },
   "error": null,
-  "rerun_count": 0,
-  "last_rerun_at": null
+  "rerun_count": 1,
+  "last_rerun_at": "2025-12-09T19:08:05.822396"
 }
